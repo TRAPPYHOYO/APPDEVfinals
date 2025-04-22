@@ -16,7 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .dashboard-container {
@@ -34,6 +34,13 @@
             font-size: 2rem;
             color: #007bff;
             text-align: center;
+        }
+
+        .flash-message {
+            color: green;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
         }
 
         .search-bar {
@@ -149,6 +156,13 @@
     <div class="dashboard-container">
         <h2>Welcome, {{ Auth::user()->name }}</h2>
 
+        <!-- Flash Message -->
+        @if (session('success'))
+            <div class="flash-message">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <!-- Search Bar -->
         <form method="GET" action="{{ route('contacts.index') }}" class="search-bar">
             <input type="text" name="search" placeholder="Search contacts..." value="{{ request('search') }}">
@@ -192,7 +206,7 @@
         <a href="{{ route('contacts.create') }}" class="add-contact-btn">+ Add Contact</a>
 
         <!-- Logout Button -->
-        <form method="POST" action="/logout" style="display: inline;">
+        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
             @csrf
             <button type="submit" class="logout-btn">Logout</button>
         </form>
