@@ -1,12 +1,11 @@
-<!-- filepath: c:\Users\Acer\Downloads\APPDEVfinals-main\src\resources\views\auth\login.blade.php -->
+<!-- filepath: c:\Users\Acer\Downloads\APPDEVfinals-main\src\resources\views\auth\Forgot-password.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Forgot Password</title>
     <style>
-        /* General styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -19,18 +18,19 @@
             height: 100vh;
         }
 
-        .login-container {
+        .forgot-container {
             background: #fff;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
-            animation: fadeIn 1.5s ease-in-out;
+            width: 100%;
+            max-width: 400px;
         }
 
         h2 {
             margin-bottom: 20px;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #007bff;
         }
 
@@ -64,57 +64,30 @@
             transform: scale(1.05);
         }
 
-        .back-button {
+        .back-link {
             display: inline-block;
             margin-top: 15px;
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .back-button:hover {
-            color: #0056b3;
-        }
-
-        .forgot-password-link {
-            display: inline-block;
-            margin-top: 10px;
             text-decoration: none;
             color: #007bff;
             font-size: 0.9rem;
             transition: color 0.3s ease;
         }
 
-        .forgot-password-link:hover {
+        .back-link:hover {
             color: #0056b3;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form method="POST" action="/login">
+    <div class="forgot-container">
+        <h2>Forgot Password</h2>
+        <p>Please enter your email address to receive a password reset link.</p>
+        <form method="POST" action="{{ route('password.email') }}">
             @csrf
-            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <button type="submit">Send Reset Link</button>
         </form>
-        <!-- Forgot Password Link -->
-        <a href="{{ route('password.request') }}" class="forgot-password-link">Forgot your password?</a>
-        <a href="/" class="back-button">← Back to Home</a>
+        <a href="{{ route('login') }}" class="back-link">← Back to Login</a>
     </div>
 </body>
 </html>
